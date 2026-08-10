@@ -59,11 +59,36 @@ a:hover {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(143, 173, 126, 0.16), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 100% 20%, rgba(196, 165, 116, 0.06), transparent 50%),
-    radial-gradient(ellipse 40% 35% at 0% 60%, rgba(143, 173, 126, 0.07), transparent 45%),
-    var(--bg);
+  background-color: var(--bg);
+  background-image:
+    /* readability scrims so type stays clear over the photo */
+    linear-gradient(180deg, rgba(8, 12, 10, 0.72) 0%, rgba(8, 12, 10, 0.55) 35%, rgba(8, 12, 10, 0.78) 100%),
+    radial-gradient(ellipse 70% 55% at 50% 20%, rgba(11, 15, 12, 0.15), rgba(11, 15, 12, 0.75) 75%),
+    url("assets/bg-mountains-hummingbirds.jpg");
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@supports not (background-attachment: fixed) {
+  .bg {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 720px) {
+  .bg {
+    /* fixed backgrounds are janky on many phones */
+    background-attachment: scroll;
+    background-position: center 30%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg {
+    background-attachment: scroll;
+  }
 }
 
 /* Header */
@@ -271,11 +296,12 @@ a:hover {
   flex-direction: column;
   gap: 1.25rem;
   padding: 1.75rem;
-  background: linear-gradient(165deg, var(--bg-card), var(--bg-elev));
+  background: linear-gradient(165deg, rgba(21, 28, 24, 0.92), rgba(18, 24, 22, 0.9));
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   min-height: 100%;
+  backdrop-filter: blur(8px);
 }
 
 .card-farms {
@@ -355,8 +381,9 @@ a:hover {
   padding: 2rem 1.75rem;
   border-radius: var(--radius);
   border: 1px solid var(--line);
-  background: rgba(18, 24, 22, 0.7);
+  background: rgba(18, 24, 22, 0.88);
   text-align: center;
+  backdrop-filter: blur(8px);
 }
 
 .about-inner p {
